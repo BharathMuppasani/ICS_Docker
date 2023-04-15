@@ -12,9 +12,9 @@ This repository contains the docker recipe to run the ICS project in a virtual e
     - **Note**: The image name *(ics_docker)* and tag *(latest)* can be changed as per your preference.
 4. Run the docker image using the following command:
     ```bash
-    docker run -p 5901:80 -v <path_to_repository\data>:/home/data ics_docker:latest
+    docker run -p 5901:80 -v <path_to_repository_ICS_Dcoker/data>:/home/data ics_docker:latest
     ```
-    - **Note**: Replace `<path_to_repository\data>` with the absolute path to the data folder in the repository.
+    - **Note**: Replace `<path_to_repository_ICS_Dcoker/data>` with the absolute path to the data folder in the repository.
     - **Note**: The port number `5901` can be changed as per your preference.
 5. Open a browser and navigate to [http://localhost:5901](http://localhost:5901) to access and interact with the virtual environment. This should provide a LXDE Ubuntu desktop environment.
 6. Now in this environment we need to run the scripts to generate the input files and run the simulation. 
