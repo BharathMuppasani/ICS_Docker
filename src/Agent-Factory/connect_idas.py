@@ -50,7 +50,7 @@ def process_agent_row(row: pd.Series):
         rowValue = row[i]
         rowValues = municipalitySheet.loc[rowName]
         columnIndex = headerSheet.columns[(headerSheet.loc[rowName] == rowValue).values]
-        value = municipalitySheet.loc[rowName, columnIndex]
+        value = municipalitySheet.loc[rowName, columnIndex].iloc[0]
         agent_percentage *= float(value)/100.0
 
     country = municipalitySheet.at['country', 'value01'].lower()
