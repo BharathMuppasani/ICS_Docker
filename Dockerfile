@@ -21,15 +21,19 @@ RUN mkdir /home/netlogo \
  && sed -i -e 's/org.nlogo.headless.Main/org.nlogo.app.App/g' /home/netlogo/netlogo-headw.sh \
  && wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
  && apt-get update && apt-get install -y libxrender1 libxtst6 openjdk-17-jdk
-    
+
 COPY . /home/
+
+RUN apt-get update && apt-get install dos2unix && apt-get clean
+RUN find /home/ -name *.sh | xargs dos2unix -b
 
 RUN mv /home/src/Netlogo-Model/InfoDemo.nlogo /home/src/Netlogo-Model/NLModel.nlogo
 
 # install the latest python version from Deadsnakes PPA
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa
-RUN apt-get update && apt-get install -y python3.10 python3-pip
+RUN apt-get update
+RUN apt-get install -y python3.10 python3-pip
 
 WORKDIR /home/src/Agent-Factory
 
