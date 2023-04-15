@@ -1,6 +1,32 @@
 # ICS_Docker
 This repository contains the docker recipe to run the ICS project in a virtual environment.
 
+## Steps to create and run the docker image
+1. Download and install [Docker Engine](https://docs.docker.com/engine/install/). 
+2. Clone the repository.
+3. Build the docker image using the following command:
+    ```bash
+    docker build -t ics_docker:latest .
+    ```
+    - **Note**: This will take some time to build the image. The image size is around 2.9 GB.
+    - **Note**: The image name *(ics_docker)* and tag *(latest)* can be changed as per your preference.
+4. Run the docker image using the following command:
+    ```bash
+    docker run -p 5901:80 -v <path_to_repository\data>:/home/data ics_docker:latest
+    ```
+    - **Note**: Replace `<path_to_repository\data>` with the absolute path to the data folder in the repository.
+    - **Note**: The port number `5901` can be changed as per your preference.
+5. Open a browser and navigate to [http://localhost:5901](http://localhost:5901) to access and interact with the virtual environment. This should provide a LXDE Ubuntu desktop environment.
+6. Now in this environment we need to run the scripts to generate the input files and run the simulation. 
+    - Open the terminal: `Menu (bottom left corner) -> System Tools -> LXTerminal`
+    - Run the following commands in the terminal to navigate to the home directory and run the ICS project:
+        ```bash
+        cd /home
+        bash run_full_model.sh
+        ```
+      - This should generate the input files from agent factory and launch the netlogo 6.3.0 software. The input files will be generated in the `data/input` folder. The output files of the simulation will be generated in the `data/output` folder.
+      - **Note**: `run_full_model.sh` script will run both the agent factory and netlogo modules. However, if you want to run the agent factory or netlogo modules individually, you can use the `run_agent_factory.sh` and `run_netlogo.sh` scripts respectively. This way the netlogo software can be launched separately and the simulation can be run multiple times without having to generate the input files again.
+
 ## Folder Structure & Contents
 ### Source Files
 - **Agent Factory** : `src/Agent-Factory`
@@ -26,29 +52,4 @@ This repository contains the docker recipe to run the ICS project in a virtual e
 - `run_full_model.sh` : **for running the full model**
   - Contains the script to run the full model (Agent Factory + Netlogo) inside the docker environment.
 
-## Steps to create and run the docker image
-1. Download and install [Docker Engine](https://docs.docker.com/engine/install/). 
-2. Clone the repository.
-3. Build the docker image using the following command:
-    ```bash
-    docker build -t ics_docker:latest .
-    ```
-    - **Note**: This will take some time to build the image. The image size is around 2.5 GB.
-    - **Note**: The image name *(ics_docker)* and tag *(latest)* can be changed as per your preference.
-4. Run the docker image using the following command:
-    ```bash
-    docker run -p 5901:80 -v <path_to_repository\data>:/home/data ics_docker:latest
-    ```
-    - **Note**: Replace `<path_to_repository\data>` with the absolute path to the data folder in the repository.
-    - **Note**: The port number `5901` can be changed as per your preference.
-5. Open a browser and navigate to [http://localhost:5901](http://localhost:5901) to access and interact with the virtual environment. This should provide a LXDE Ubuntu desktop environment.
-6. Now in this environment we need to run the scripts to generate the input files and run the simulation. 
-    - Open the terminal: `Menu (bottom left corner) -> System Tools -> LXTerminal`
-    - Run the following commands in the terminal to navigate to the home directory and run the ICS project:
-        ```bash
-        cd /home
-        bash run_full_model.sh
-        ```
-      - This should generate the input files from agent factory and launch the netlogo 6.3.0 software. The input files will be generated in the `data/input` folder. The output files of the simulation will be generated in the `data/output` folder.
-      - **Note**: `run_full_model.sh` script will run both the agent factory and netlogo modules. However, if you want to run the agent factory or netlogo modules individually, you can use the `run_agent_factory.sh` and `run_netlogo.sh` scripts respectively. This way the netlogo software can be launched separately and the simulation can be run multiple times without having to generate the input files again.
 
