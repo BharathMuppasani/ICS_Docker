@@ -44,7 +44,7 @@ This repository contains the docker recipe to run the ICS project in a virtual e
 ### Supporting Files for Docker
 - `Dockerfile` : **Dockerfile**
   - Contains the recipe to build the docker image.
-  - Provides a VNC based virtual environment to interact and simulated the ICS project.
+  - Provides a VNC based virtual environment to interact and simulate the ICS project.
 - `run_agent_factory.sh` : **for generating input files**
   - Contains the script to run the agent factory script inside the docker environment.
 - `run_netlogo.sh` : **for launching netlogo simulation**
