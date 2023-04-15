@@ -29,9 +29,12 @@ for name, sheet in df2.items():
     ids_list.extend([s.strip() for s in sheet['source'].tolist()])
     type_list.extend([s.strip() for s in sheet['type'].tolist()])
     ids_to_type = dict(zip(ids_list, type_list))
-    
+ 
+ids_to_type = {k.lower(): v.lower() for k, v in ids_to_type.items()} #makes all lower case
 ids_list = [*set(ids_list)] #Remove duplicate info sources from list
 ids_list = [x.lower() for x in ids_list]  
+
+
 
 #Extra step to write info sources to separate file
 f1 = open(constants.INFO_DISS_FILE_NAME,'w')
