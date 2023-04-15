@@ -1,6 +1,8 @@
 # syntax=docker/dockerfile:1
 FROM dorowu/ubuntu-desktop-lxde-vnc
 
+ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk-amd64
+
 # install some dependencies for netlogo model using java
 
 ARG MODEL_NAME
